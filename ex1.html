@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="movieName">
+    <button id="search" onclick="getData()">Search</button>
+    <div id="movieBox"></div>
+
+
+
+    <script>
+        var data;
+        let API_KEY = "3c861c38";
+        async function getData() {
+           try{
+            let movieName = document.getElementById("movieName").value;
+            let res = await fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${movieName}`);
+            data = await res.json();
+            console.log(data);
+            alert("Total movies found ="+data.Search.length)
+           } catch(err){
+            //    alert("movie not found");
+               console.log(err);
+           }
+        }
+        let movieBox = document.getElementById("movieBox");
+        function dispAlert(){
+            alert("yes")
+        }
+        // function display(data) {
+        //     var n = data.Search.length;
+        //     alert(n)
+        //     for(var i=0 ; i< n ;i++)
+        //     {
+        //         let movie = data[i];
+        //         let moviecard = document.createElement("div")
+
+        //         let image = document.createElement("img");
+        //         image.src = movie.Poster;
+
+        //         let name = document.createElement("p")
+        //         name.innerText = movie.Title;
+
+        //         let type = document.createElement("p")
+        //         type.innerText = movie.Type;
+
+        //         let year = document.createElement("p")
+        //         year.innerText = movie.Type;
+
+        //         let id = document.createElement("p")
+        //         id.innerText = movie.imdbID;
+
+        //         moviecard.append(image, name, type, year, id)
+        //         movieBox.append(moviecard);
+
+        //     }
+                
+        // }
+    </script>
+</body>
+
+
+</html>
